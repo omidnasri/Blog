@@ -1,0 +1,12 @@
+bin/
+obj/
+Release/*
+*.user
+*.suo
+src/packages/*
+src/blog/content/bootstrap*
+src/blog/scripts/bootstrap*
+src/blog/scripts/jquery*
+src/blog/scripts/npm.js
+src/blog/fonts/
+src/packages/*
