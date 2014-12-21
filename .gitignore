@@ -5,6 +5,9 @@ Release/*
 *.suo
 src/packages/*
 src/blog/content/bootstrap*
+src/blog/content/fonts/*
+src/blog/content/css/*
+src/blog/scripts/*.js
 src/blog/scripts/bootstrap*
 src/blog/scripts/jquery*
 src/blog/scripts/npm.js

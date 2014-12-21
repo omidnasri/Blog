@@ -1,0 +1,44 @@
+﻿@using Blog.Helpers;
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-rtl.css" rel="stylesheet" />
+    @if (IsSectionDefined("styles"))
+    {
+        RenderSection("styles");
+    }
+
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @if (IsSectionDefined("scripts"))
+    {
+        RenderSection("scripts");
+    }
+</head>
+<body dir="rtl">
+    <div class="container">
+        <div class="navbar navbar-default navbar-right">
+            <ul class="nav navbar-nav">
+                <li class="@Html.GetClassForNavbarItem("Home", "Index")">
+                    @Html.ActionLink("خانه", "Index")
+                </li>
+                <li class="@Html.GetClassForNavbarItem("Home", "About")">
+                    @Html.ActionLink("درباره من", "About")
+                </li>
+            </ul>
+        </div>
+            <div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
