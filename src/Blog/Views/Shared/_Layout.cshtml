@@ -4,16 +4,15 @@
     <title>Blog</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/css/bootstrap-rtl.css" rel="stylesheet" />
+    
+    @Styles.Render("~/Styles/Bootstrap")
+    @Styles.Render("~/Styles/Bootstrap-rtl")
     @if (IsSectionDefined("styles"))
     {
         RenderSection("styles");
     }
 
-    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/Scripts/JQuery", "~/Scripts/Bootstrap")
     @if (IsSectionDefined("scripts"))
     {
         RenderSection("scripts");
