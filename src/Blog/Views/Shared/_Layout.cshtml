@@ -1,8 +1,7 @@
-﻿@using Blog.Helpers;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fa">
 <head>
+    <title>Blog</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -25,10 +24,10 @@
         <div class="navbar navbar-default navbar-right">
             <ul class="nav navbar-nav">
                 <li class="@Html.GetClassForNavbarItem("Home", "Index")">
-                    @Html.ActionLink("خانه", "Index")
+                    @Html.ActionLink(@Resource.NavbarHome, "Index")
                 </li>
                 <li class="@Html.GetClassForNavbarItem("Home", "About")">
-                    @Html.ActionLink("درباره من", "About")
+                    @Html.ActionLink(@Resource.NavbarAbout, "About")
                 </li>
             </ul>
         </div>
