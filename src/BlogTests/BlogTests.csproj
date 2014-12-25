@@ -50,7 +50,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseControllerTests.cs" />
     <Compile Include="Globalization\CultureHelperTests.cs" />
     <Compile Include="Helpers\HtmlHelperExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +62,9 @@
       <Project>{c7f076db-a9eb-4718-9e07-967711f42c41}</Project>
       <Name>Blog</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

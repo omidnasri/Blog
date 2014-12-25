@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -11,6 +12,53 @@ namespace Blog.Globalization
     /// </summary>
     public static class CultureHelper
     {
+        private static Dictionary<string, Func<CultureInfo>> _cultureDic = new Dictionary<string, Func<CultureInfo>>
+        {
+            { "fa-IR", () => new CultureInfo("fa-IR") },
+            { "en-US", () => new CultureInfo("en-US")}
+        };
+
+        /// <summary> 
+        /// Sets the thread's current culture and UI culture
+        /// </summary>
+        /// <param name="culture"></param>
+        private static void SetCulture(CultureInfo culture)
+        {
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        /// <summary>
+        /// Sets current culture to specified language, if specified language is not supported culture won't be changed
+        /// </summary>
+        /// <param name="lang">Language to set</param>
+        /// <param name="resposne"></param>
+        public static void ChangeCulture(string language, HttpResponseBase response)
+        {
+            if (!string.IsNullOrEmpty(language) && _cultureDic.ContainsKey(language))
+            {
+                response.SetCookie(new HttpCookie("_culture", language));
+                SetCulture(_cultureDic[language]());
+            }
+        }
+
+        /// <summary>
+        /// Sets current culture to specified language in cookie, if no language is specified en is chosen
+        /// </summary>
+        /// <param name="request"></param>
+        public static void SetCultureUsingCookie(HttpRequestBase request)
+        {
+            var culture = new CultureInfo("en-US");
+            var cultureCookie = request.Cookies["_culture"];
+
+            if (cultureCookie != null && _cultureDic.ContainsKey(cultureCookie.Value))
+            {
+                culture = _cultureDic[cultureCookie.Value]();
+            }
+
+            SetCulture(culture);
+        }
+
         /// <summary>
         /// Gets a boolean value indicating if the current thread's culture's language is right to left 
         /// </summary>
