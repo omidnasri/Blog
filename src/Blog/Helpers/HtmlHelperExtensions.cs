@@ -24,7 +24,17 @@ namespace Blog.Helpers
         /// <returns></returns>
         public static MvcHtmlString DirectionAttribute(this HtmlHelper helper)
         {
-            return new MvcHtmlString(CultureHelper.IsCurrentCultureRightToLeft() ? "dir='rtl'" : "");
+            return new MvcHtmlString(CultureHelper.IsCurrentCultureRightToLeft() ? "dir='rtl'" : "dir='ltr'");
+        }
+
+        /// <summary>
+        /// Gets the reverse dir attribute for current culture to use in html elements.
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <returns></returns>
+        public static MvcHtmlString DirectionAttributeReverse(this HtmlHelper helper)
+        {
+            return new MvcHtmlString(CultureHelper.IsCurrentCultureRightToLeft() ? "dir='ltr'" : "dir='rtl'");
         }
     }
 }

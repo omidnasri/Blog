@@ -1,11 +1,11 @@
-﻿using Moq;
-using System.Collections.Generic;
-using System.Web;
+﻿using System.Globalization;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Xunit;
-using Blog.Helpers;
 using Xunit.Extensions;
+using Blog.Helpers;
+using Moq;
 
 namespace BlogTests.Helpers
 {
@@ -18,10 +18,28 @@ namespace BlogTests.Helpers
         [InlineData("Account", "Index", "Account", "Index", "active")]
         public void GetClassForNavbarItem(string controller, string action, string currentController, string currentAction, string expectedClass)
         {
-            Assert.Equal(expectedClass, GetHtmlHelperMock(currentController, currentAction).GetClassForNavbarItem(controller, action));
+            Assert.Equal(expectedClass, GetHtmlHelper(currentController, currentAction).GetClassForNavbarItem(controller, action));
         }
 
-        private HtmlHelper GetHtmlHelperMock(string controller, string action)
+        [Theory]
+        [InlineData("fa-IR", "dir='rtl'")]
+        [InlineData("en-US", "dir='ltr'")]
+        public void DirectionAttribute_ReturnsCorrectDirAttribute(string culture, string expected)
+        {
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+            Assert.Equal(expected, GetHtmlHelper("", "").DirectionAttribute().ToString());
+        }
+
+        [Theory]
+        [InlineData("fa-IR", "dir='ltr'")]
+        [InlineData("en-US", "dir='rtl'")]
+        public void DirectionAttributeReverse_ReturnsCorrectDirAttribute(string culture, string expected)
+        {
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+            Assert.Equal(expected, GetHtmlHelper("", "").DirectionAttributeReverse().ToString());
+        }
+
+        private HtmlHelper GetHtmlHelper(string controller, string action)
         {
             var routeData = new RouteData();
             routeData.Values.Add("controller", controller);

@@ -61,6 +61,24 @@ namespace Blog.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string LanguageEnglish {
+            get {
+                return ResourceManager.GetString("LanguageEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farsi.
+        /// </summary>
+        public static string LanguageFarsi {
+            get {
+                return ResourceManager.GetString("LanguageFarsi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string NavbarAbout {
