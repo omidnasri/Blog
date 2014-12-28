@@ -27,10 +27,10 @@
 <body @Html.DirectionAttribute()>
     <div class="container">
         <div @Html.DirectionAttributeReverse()>
-            <a href="@Url.Action("ChangeLanguage", "Settings", new { language = "fa-IR", returnUrl = Request.RawUrl })">
+            <a href="@Url.Action("ChangeLanguage", "Settings", new { language = Language.Farsi, returnUrl = Request.RawUrl })">
                 <img src="~/Content/img/flag-ir.png" alt="@Resource.LanguageFarsi" />
             </a>
-            <a href="@Url.Action("ChangeLanguage", "Settings", new { language = "en-US", returnUrl = Request.RawUrl })">
+            <a href="@Url.Action("ChangeLanguage", "Settings", new { language = Language.English, returnUrl = Request.RawUrl })">
                 <img src="~/Content/img/flag-us.png" alt="@Resource.LanguageEnglish" />
             </a>
         </div>

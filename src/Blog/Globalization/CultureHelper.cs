@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace Blog.Globalization
     {
         private static Dictionary<string, Func<CultureInfo>> _cultureDic = new Dictionary<string, Func<CultureInfo>>
         {
-            { "fa-IR", () => new CultureInfo("fa-IR") },
-            { "en-US", () => new CultureInfo("en-US")}
+            { Language.Farsi, () => new CultureInfo(Language.Farsi) },
+            { Language.English, () => new CultureInfo(Language.English)}
         };
 
         /// <summary> 
